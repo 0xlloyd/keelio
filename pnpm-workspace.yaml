@@ -13,3 +13,6 @@ strictDepBuilds: true
 allowBuilds:
   "@reown/appkit": false
   secp256k1: false
+  # wrangler's bundler and runtime: their binaries arrive as optional dependencies; the scripts only re-check them.
+  esbuild: false
+  workerd: false
