@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Keelio demo: an agent swap on a local simnet</title>
+    <noscript>
+      <style>
+        .needs-js {
+          display: none;
+        }
+      </style>
+    </noscript>
+    <style>
+      :root {
+        --text: #1a1a1a;
+        --muted: #4a4a4a;
+        --border: #6b6b6b;
+        --accent: #1d4ed8;
+        --error: #b00020;
+        --banner-bg: #fff4d6;
+        --banner-border: #7a5c00;
+        color: var(--text);
+        background: #ffffff;
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        line-height: 1.5;
+      }
+      body {
+        margin: 0;
+      }
+      .banner {
+        background: var(--banner-bg);
+        border-bottom: 2px solid var(--banner-border);
+        padding: 0.75rem 1rem;
+      }
+      .banner p {
+        margin: 0 auto;
+        max-width: 48rem;
+      }
+      main {
+        margin: 0 auto;
+        max-width: 48rem;
+        padding: 0 1rem 3rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+        margin: 1.25rem 0 0.5rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+        margin: 1.75rem 0 0.5rem;
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        overflow-wrap: anywhere;
+      }
+      #status {
+        font-weight: 600;
+      }
+      dl.who {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 0.25rem 1rem;
+        margin: 0;
+      }
+      dl.who dd {
+        margin: 0;
+      }
+      .field {
+        margin-bottom: 1rem;
+      }
+      label {
+        display: block;
+        font-weight: 600;
+      }
+      input {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 24rem;
+        min-height: 44px;
+        padding: 0.5rem 0.75rem;
+        font: inherit;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        color: var(--text);
+        background: #ffffff;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+      }
+      input[aria-invalid="true"] {
+        border: 2px solid var(--error);
+      }
+      .hint {
+        margin: 0.25rem 0 0;
+        min-height: 1.5em;
+        color: var(--muted);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+      .error {
+        margin: 0.25rem 0 0;
+        color: var(--error);
+        font-weight: 600;
+      }
+      button {
+        min-height: 44px;
+        padding: 0.5rem 1.25rem;
+        font: inherit;
+        font-weight: 600;
+        color: #ffffff;
+        background: var(--accent);
+        border: 2px solid var(--accent);
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:disabled {
+        color: var(--muted);
+        background: #e8e8e8;
+        border-color: var(--border);
+        cursor: not-allowed;
+      }
+      input:focus-visible,
+      button:focus-visible,
+      .scroll:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      #result p {
+        margin: 0.25rem 0;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        overflow-wrap: anywhere;
+      }
+      .scroll {
+        overflow-x: auto;
+      }
+      table {
+        border-collapse: collapse;
+        font-variant-numeric: tabular-nums;
+      }
+      caption {
+        text-align: left;
+        color: var(--muted);
+        padding-bottom: 0.25rem;
+      }
+      th:first-child {
+        padding-left: 0;
+      }
+      th,
+      td {
+        border-bottom: 1px solid var(--border);
+        padding: 0.4rem 0 0.4rem 1.25rem;
+        text-align: left;
+        white-space: nowrap;
+      }
+      td {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        text-align: right;
+      }
+      thead th + th {
+        text-align: right;
+      }
+      .policy {
+        margin: 0.75rem 0 0;
+        padding-left: 1.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="banner">
+      <p>
+        Local simulation. Keelio's real contracts run on a Clarinet simnet
+        inside this page, with mock tokens. No wallet, no network, no real
+        funds. Reloading the page starts a new simnet.
+      </p>
+    </header>
+    <main>
+      <h1>Keelio vault demo</h1>
+      <noscript>
+        <p>
+          This demo runs the simnet with JavaScript and WebAssembly. Turn
+          JavaScript on, or run <code>pnpm run demo</code> in a terminal.
+        </p>
+      </noscript>
+      <p id="status" class="needs-js" role="status">Starting the simnet…</p>
+
+      <section aria-labelledby="who-heading">
+        <h2 id="who-heading">Who</h2>
+        <dl class="who">
+          <dt>Owner</dt>
+          <dd><code id="owner">…</code></dd>
+          <dt>Agent</dt>
+          <dd><code id="agent">…</code></dd>
+        </dl>
+      </section>
+
+      <section aria-labelledby="swap-heading">
+        <h2 id="swap-heading">Agent swap</h2>
+        <p>The agent sells mock sBTC for mock USD on mock-dex.</p>
+        <form id="swap-form" novalidate>
+          <div class="field">
+            <label for="amount-in">Amount in, in sats of mock sBTC</label>
+            <input
+              id="amount-in"
+              name="amount-in"
+              inputmode="numeric"
+              autocomplete="off"
+              spellcheck="false"
+              value="10000000"
+              aria-describedby="amount-in-hint"
+            />
+            <p id="amount-in-hint" class="hint">= 0.10000000 sBTC</p>
+            <p id="amount-in-error" class="error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="min-out">Minimum out, in base units of mock USD</label>
+            <input
+              id="min-out"
+              name="min-out"
+              inputmode="numeric"
+              autocomplete="off"
+              spellcheck="false"
+              value="9000000000"
+              aria-describedby="min-out-hint"
+            />
+            <p id="min-out-hint" class="hint">= 9000.000000 USD</p>
+            <p id="min-out-error" class="error" hidden></p>
+          </div>
+          <button id="swap" type="submit" disabled>Swap as agent</button>
+        </form>
+      </section>
+
+      <section aria-labelledby="result-heading">
+        <h2 id="result-heading">Result</h2>
+        <div id="result" aria-live="polite">
+          <p>No swap yet.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="vault-heading">
+        <h2 id="vault-heading">Vault</h2>
+        <div
+          class="scroll"
+          role="region"
+          aria-labelledby="vault-caption"
+          tabindex="0"
+        >
+          <table>
+            <caption id="vault-caption">
+              The owner's ledger and the agent's caps, per token
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Token</th>
+                <th scope="col">Ledger balance</th>
+                <th scope="col">Max per trade</th>
+                <th scope="col">Max per day</th>
+                <th scope="col">Day total</th>
+              </tr>
+            </thead>
+            <tbody id="vault-rows"></tbody>
+          </table>
+        </div>
+        <ul id="vault-policy" class="policy"></ul>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

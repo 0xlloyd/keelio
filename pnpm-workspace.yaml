@@ -1,0 +1,15 @@
+packages:
+  - "packages/*"
+  - "apps/dashboard"
+# Supply chain. Every dependency is pinned exactly and `pnpm add` keeps it so.
+savePrefix: ""
+# A version must have been on the registry for a day before it can be resolved (minutes).
+minimumReleaseAge: 1440
+# A dependency's own dependencies may come only from the registry, never a git URL or tarball.
+blockExoticSubdeps: true
+# Install scripts run only when listed below as true; a new package with one fails the install
+# until it is reviewed and listed.
+strictDepBuilds: true
+allowBuilds:
+  "@reown/appkit": false
+  secp256k1: false

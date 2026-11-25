@@ -1,0 +1,66 @@
+[project]
+name = "keelio"
+description = "Risk-limited sBTC vaults for trading agents on Stacks"
+authors = []
+telemetry = false
+cache_dir = "./.cache"
+
+[contracts.sip-010-trait]
+path = "contracts/traits/sip-010-trait.clar"
+clarity_version = 3
+epoch = 3.1
+
+[contracts.mock-sbtc]
+path = "contracts/mocks/mock-sbtc.clar"
+clarity_version = 3
+epoch = 3.1
+
+[contracts.swap-adapter-trait]
+path = "contracts/traits/swap-adapter-trait.clar"
+clarity_version = 3
+epoch = 3.1
+
+[contracts.mock-usd]
+path = "contracts/mocks/mock-usd.clar"
+clarity_version = 3
+epoch = 3.1
+
+[contracts.mock-dex]
+path = "contracts/mocks/mock-dex.clar"
+clarity_version = 3
+epoch = 3.1
+
+[contracts.oracle-trait]
+path = "contracts/traits/oracle-trait.clar"
+clarity_version = 3
+epoch = 3.1
+
+[contracts.mock-oracle]
+path = "contracts/mocks/mock-oracle.clar"
+clarity_version = 4
+epoch = 4.0
+
+[contracts.keelio-vault]
+path = "contracts/keelio-vault.clar"
+clarity_version = 6
+epoch = 4.0
+
+[contracts.evil-token]
+path = "contracts/mocks/evil-token.clar"
+clarity_version = 3
+epoch = 3.1
+
+[contracts.vault-caller]
+path = "contracts/mocks/vault-caller.clar"
+clarity_version = 3
+epoch = 4.0
+
+[contracts.greedy-sbtc]
+path = "contracts/mocks/greedy-sbtc.clar"
+clarity_version = 3
+epoch = 3.1
+
+[contracts.failing-sbtc]
+path = "contracts/mocks/failing-sbtc.clar"
+clarity_version = 3
+epoch = 3.1

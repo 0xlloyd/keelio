@@ -1,0 +1,12 @@
+{
+  "name": "@keelio/monitor",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@keelio/mcp": "workspace:*",
+    "@keelio/sdk": "workspace:*",
+    "@stacks/transactions": "7.7.0"
+  }
+}

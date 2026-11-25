@@ -1,0 +1,13 @@
+{
+  "name": "@keelio/mcp",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@keelio/sdk": "workspace:*",
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "@stacks/transactions": "7.7.0",
+    "zod": "4.6.7"
+  }
+}

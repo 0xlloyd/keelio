@@ -1,0 +1,11 @@
+node_modules
+pnpm-lock.yaml
+.cache
+dist
+factory/jobs
+factory/dashboard.html
+factory/dashboard.template.html
+factory/bin
+deployments
+videos
+.impeccable

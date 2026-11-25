@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.cache/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+# Mainnet and testnet settings hold real keys. Only Simnet and Devnet test keys are committed.
+settings/Mainnet.toml
+settings/Testnet.toml
+**/settings/Mainnet.toml
+**/settings/Testnet.toml
+# The factory tooling lives in the private repo. A local copy sits here.
+factory/
+deployments/
+# The owner's own testnet config for the dashboard. Only the example is committed.
+apps/dashboard/testnet.config.json
+# The video sources and renders live in the private repo. A local copy may sit here.
+videos/

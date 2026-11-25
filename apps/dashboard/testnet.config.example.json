@@ -1,0 +1,33 @@
+{
+  "network": "testnet",
+  "apiUrl": "https://api.testnet.hiro.so",
+  "vault": "REPLACE_WITH_TESTNET_ADDRESS.keelio-vault",
+  "tokens": [
+    {
+      "id": "REPLACE_WITH_TESTNET_ADDRESS.REPLACE_WITH_SBTC_TOKEN_CONTRACT",
+      "assetName": "REPLACE_WITH_THE_TOKENS_FUNGIBLE_TOKEN_NAME",
+      "name": "testnet sBTC",
+      "symbol": "sBTC",
+      "decimals": 8,
+      "unit": "sats"
+    },
+    {
+      "id": "REPLACE_WITH_TESTNET_ADDRESS.REPLACE_WITH_QUOTE_TOKEN_CONTRACT",
+      "assetName": "REPLACE_WITH_THE_TOKENS_FUNGIBLE_TOKEN_NAME",
+      "name": "testnet USD",
+      "symbol": "USD",
+      "decimals": 6,
+      "unit": "base units"
+    }
+  ],
+  "sbtcToken": "REPLACE_WITH_TESTNET_ADDRESS.REPLACE_WITH_SBTC_TOKEN_CONTRACT",
+  "adapters": [
+    {
+      "id": "REPLACE_WITH_TESTNET_ADDRESS.REPLACE_WITH_ADAPTER_CONTRACT",
+      "name": "REPLACE_WITH_A_NAME_FOR_THE_ADAPTER",
+      "pool": null
+    }
+  ],
+  "oracle": "REPLACE_WITH_TESTNET_ADDRESS.REPLACE_WITH_ORACLE_CONTRACT",
+  "priceScale": "REPLACE_WITH_THE_VAULTS_PRICE_SCALE_AS_DIGITS"
+}

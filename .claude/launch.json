@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dashboard",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["exec", "vite", "apps/dashboard", "--port", "5183"],
+      "port": 5183
+    },
+    {
+      "name": "web",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["run", "web:preview"],
+      "port": 4173
+    }
+  ]
+}

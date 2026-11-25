@@ -1,0 +1,73 @@
+{
+  "vault": "SPT7X786SV7KBMCK5ZY9C7TZR81TCJ0CJJK2PYYM.keelio-vault-bitflow",
+  "adapter": "SPT7X786SV7KBMCK5ZY9C7TZR81TCJ0CJJK2PYYM.bitflow-adapter",
+  "pool": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-10",
+  "sbtc": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
+  "usdcx": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
+  "swaps": [
+    {
+      "tokenIn": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
+      "tokenOut": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
+      "amountIn": "10000",
+      "amountOut": "6443104",
+      "transfers": [
+        {
+          "amount": "10000",
+          "asset_identifier": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token::sbtc-token",
+          "recipient": "SPT7X786SV7KBMCK5ZY9C7TZR81TCJ0CJJK2PYYM.bitflow-adapter",
+          "sender": "SPT7X786SV7KBMCK5ZY9C7TZR81TCJ0CJJK2PYYM.keelio-vault-bitflow"
+        },
+        {
+          "amount": "10000",
+          "asset_identifier": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token::sbtc-token",
+          "recipient": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-10",
+          "sender": "SPT7X786SV7KBMCK5ZY9C7TZR81TCJ0CJJK2PYYM.bitflow-adapter"
+        },
+        {
+          "amount": "6443104",
+          "asset_identifier": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx::usdcx-token",
+          "recipient": "SPT7X786SV7KBMCK5ZY9C7TZR81TCJ0CJJK2PYYM.bitflow-adapter",
+          "sender": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-10"
+        },
+        {
+          "amount": "6443104",
+          "asset_identifier": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx::usdcx-token",
+          "recipient": "SPT7X786SV7KBMCK5ZY9C7TZR81TCJ0CJJK2PYYM.keelio-vault-bitflow",
+          "sender": "SPT7X786SV7KBMCK5ZY9C7TZR81TCJ0CJJK2PYYM.bitflow-adapter"
+        }
+      ]
+    },
+    {
+      "tokenIn": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
+      "tokenOut": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
+      "amountIn": "3221552",
+      "amountOut": "4950",
+      "transfers": [
+        {
+          "amount": "3221552",
+          "asset_identifier": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx::usdcx-token",
+          "recipient": "SPT7X786SV7KBMCK5ZY9C7TZR81TCJ0CJJK2PYYM.bitflow-adapter",
+          "sender": "SPT7X786SV7KBMCK5ZY9C7TZR81TCJ0CJJK2PYYM.keelio-vault-bitflow"
+        },
+        {
+          "amount": "3221552",
+          "asset_identifier": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx::usdcx-token",
+          "recipient": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-10",
+          "sender": "SPT7X786SV7KBMCK5ZY9C7TZR81TCJ0CJJK2PYYM.bitflow-adapter"
+        },
+        {
+          "amount": "4950",
+          "asset_identifier": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token::sbtc-token",
+          "recipient": "SPT7X786SV7KBMCK5ZY9C7TZR81TCJ0CJJK2PYYM.bitflow-adapter",
+          "sender": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-10"
+        },
+        {
+          "amount": "4950",
+          "asset_identifier": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token::sbtc-token",
+          "recipient": "SPT7X786SV7KBMCK5ZY9C7TZR81TCJ0CJJK2PYYM.keelio-vault-bitflow",
+          "sender": "SPT7X786SV7KBMCK5ZY9C7TZR81TCJ0CJJK2PYYM.bitflow-adapter"
+        }
+      ]
+    }
+  ]
+}

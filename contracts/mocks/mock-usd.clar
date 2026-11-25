@@ -1,0 +1,28 @@
+;; Test quote token (USD): a SIP-010 token with 6 decimals and an open mint.
+;; Simnet and devnet only. Never deployed to mainnet.
+(impl-trait .sip-010-trait.sip-010-trait)
+
+(define-fungible-token mock-usd)
+
+(define-constant ERR-NOT-TOKEN-OWNER (err u4))
+
+(define-public (transfer (amount uint) (sender principal) (recipient principal) (memo (optional (buff 34))))
+  (begin
+    (asserts! (or (is-eq tx-sender sender) (is-eq contract-caller sender)) ERR-NOT-TOKEN-OWNER)
+    (try! (ft-transfer? mock-usd amount sender recipient))
+    (match memo to-print (print to-print) 0x)
+    (ok true)
+  )
+)
+
+;; Anyone can mint in tests.
+(define-public (mint (amount uint) (recipient principal))
+  (ft-mint? mock-usd amount recipient)
+)
+
+(define-read-only (get-name) (ok "Mock USD"))
+(define-read-only (get-symbol) (ok "USD"))
+(define-read-only (get-decimals) (ok u6))
+(define-read-only (get-balance (who principal)) (ok (ft-get-balance mock-usd who)))
+(define-read-only (get-total-supply) (ok (ft-get-supply mock-usd)))
+(define-read-only (get-token-uri) (ok none))

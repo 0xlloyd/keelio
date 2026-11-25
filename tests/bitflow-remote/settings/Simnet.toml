@@ -1,0 +1,23 @@
+# Throwaway test keys for the local simnet and devnet. They hold nothing and are safe to commit.
+[network]
+name = "simnet"
+
+[accounts.deployer]
+mnemonic = "provide loan mutual bacon cactus proud rebel differ thank share hollow income crush sign belt post embark vendor cattle mystery oval disagree word vehicle"
+balance = 100_000_000_000_000
+
+[accounts.wallet_1]
+mnemonic = "cat small inside diamond denial tackle put inner hub install february patch viable nerve song wish lion cheese violin arrow rack boy decrease kitten"
+balance = 100_000_000_000_000
+
+[accounts.wallet_2]
+mnemonic = "mansion normal rug fiction share blood begin result rough sound fox entry child toss jealous wild ozone sweet shrimp celery train start clerk drama"
+balance = 100_000_000_000_000
+
+[accounts.wallet_3]
+mnemonic = "hybrid exile trial agree chalk arch useful trumpet sadness mind what critic night elbow choose tenant protect scout capital tag hip tip twenty current"
+balance = 100_000_000_000_000
+
+[accounts.wallet_4]
+mnemonic = "fetch health recipe kit reopen lonely burst waste nasty present gesture wave okay travel february barely able diary save dust spice excess envelope legend"
+balance = 100_000_000_000_000

@@ -1,0 +1,21 @@
+{
+  "uintOk": {
+    "okay": true,
+    "result": "0x01000000000000000000000000000f4240"
+  },
+  "tupleOk": {
+    "okay": true,
+    "result": "0x0c00000002056167656e740a051a8c360146278ce7e47d26e5aa35b7c6ff3c069a7e0670617573656404"
+  },
+  "errValue": {
+    "okay": true,
+    "result": "0x080100000000000000000000000000000001"
+  },
+  "callFailed": {
+    "okay": false,
+    "cause": "Unchecked(NoSuchContract(\"STT7X786SV7KBMCK5ZY9C7TZR81TCJ0CJJHJK6VD.keelio-vault\"))"
+  },
+  "noOkay": { "result": "0x03" },
+  "badHex": { "okay": true, "result": "0xzz" },
+  "truncated": { "okay": true, "result": "0x0c00" }
+}

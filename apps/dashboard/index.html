@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Keelio owner dashboard: local simulation</title>
+    <noscript>
+      <style>
+        .needs-js {
+          display: none;
+        }
+      </style>
+    </noscript>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to the dashboard</a>
+    <header class="banner">
+      <p id="banner-text">
+        <strong>Local simulation.</strong> Mock tokens, no real funds, nothing
+        deployed. No wallet and no network: reloading starts over.
+      </p>
+    </header>
+    <div class="topbar">
+      <div class="wrap">
+        <span class="brand">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M2 4h20v4H2z" />
+            <path d="M7 10h10l-5 11z" />
+          </svg>
+          Keelio
+        </span>
+        <nav class="needs-js" aria-label="Sections">
+          <ul>
+            <li><a href="#vault">Vault</a></li>
+            <li><a href="#actions">Owner actions</a></li>
+            <li id="nav-simulation">
+              <a href="#simulation">Agent console</a>
+            </li>
+            <li><a href="#journal">Journal</a></li>
+          </ul>
+        </nav>
+        <p id="mode-switch" class="needs-js">
+          Mode: local simulation.
+          <a href="?mode=testnet">Switch to testnet mode</a>, which needs a
+          config and a wallet.
+        </p>
+      </div>
+    </div>
+    <main id="main" tabindex="-1">
+      <div class="hero">
+        <div class="hero-field" aria-hidden="true">
+          <i></i><i></i><i></i><i></i>
+        </div>
+        <div class="wrap">
+          <div class="hero-card">
+            <span class="label">Keelio owner dashboard</span>
+            <h1>The agent trades. It can never withdraw.</h1>
+            <p class="tagline">Limits the contract enforces.</p>
+            <p id="intro">
+              Give a trading agent bounded swap rights over your sBTC without
+              giving it custody. Here Keelio's real vault contract runs on a
+              Clarinet simnet inside this page, and you act as the owner.
+            </p>
+            <noscript>
+              <p>
+                This dashboard runs the simnet with JavaScript and WebAssembly.
+                Turn JavaScript on, or run <code>pnpm run demo</code> in a
+                terminal.
+              </p>
+            </noscript>
+            <p id="status" class="needs-js" role="status">
+              Starting the simnet…
+            </p>
+            <div id="connect" class="needs-js"></div>
+            <div id="quick" class="quick needs-js"></div>
+          </div>
+          <div
+            id="summary"
+            class="stats needs-js"
+            role="group"
+            aria-label="Vault at a glance"
+          ></div>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <section
+          id="pending"
+          class="block needs-js"
+          aria-labelledby="pending-heading"
+          hidden
+        >
+          <div class="block-head">
+            <h2 id="pending-heading">
+              <span class="label">Needs you</span>The agent asks for your
+              approval
+            </h2>
+            <p>
+              A trade above your approval threshold does not run until you
+              approve it.
+            </p>
+          </div>
+          <div id="pending-card" class="card pending"></div>
+        </section>
+
+        <section
+          id="vault"
+          class="block needs-js"
+          aria-labelledby="vault-heading"
+        >
+          <div class="block-head">
+            <h2 id="vault-heading">
+              <span class="label">01 / Vault</span>What the contract holds
+            </h2>
+            <p>Read from the contract after every call.</p>
+          </div>
+          <div id="vault-panel" class="vault-grid"></div>
+        </section>
+
+        <section
+          id="actions"
+          class="block needs-js"
+          aria-labelledby="actions-heading"
+        >
+          <div class="block-head">
+            <h2 id="actions-heading">
+              <span class="label">02 / Owner actions</span>Only you can do these
+            </h2>
+            <p>
+              Each form builds one contract call with the Keelio SDK. You review
+              the call and its post-conditions before anything is submitted.
+            </p>
+          </div>
+          <div id="plain-policy" class="card plain"></div>
+          <div id="flows" class="actions"></div>
+          <div id="leave" class="card leave"></div>
+        </section>
+
+        <section
+          id="simulation"
+          class="block console needs-js"
+          aria-labelledby="simulation-heading"
+        >
+          <div class="block-head">
+            <h2 id="simulation-heading">
+              <span class="label">03 / Simulation only</span>Play the agent
+            </h2>
+            <p>
+              These are not part of the vault and would not exist on a real
+              network. They let you play the agent, move the simnet's clock and
+              set the mock oracle, so you can see the policy hold.
+            </p>
+          </div>
+          <div id="sim"></div>
+        </section>
+
+        <section
+          id="journal"
+          class="block needs-js"
+          aria-labelledby="journal-heading"
+        >
+          <div class="block-head">
+            <h2 id="journal-heading">
+              <span class="label">04 / Journal</span>Every action, on the record
+            </h2>
+            <p>
+              Every successful call prints one event. Newest first. A refused
+              call prints nothing.
+            </p>
+          </div>
+          <p id="journal-count" role="status"></p>
+          <ol id="journal-list" class="journal"></ol>
+          <div id="accountability" class="card account"></div>
+        </section>
+
+        <footer class="label">
+          <span>Keelio v0. Simnet only.</span>
+          <span>The contract is the product.</span>
+        </footer>
+      </div>
+    </main>
+
+    <dialog id="review" aria-labelledby="review-title">
+      <h2 id="review-title" tabindex="-1">Review this call</h2>
+      <div id="review-body"></div>
+      <div class="buttons">
+        <button id="review-confirm" type="button">
+          Confirm and submit to the simnet
+        </button>
+        <button id="review-cancel" type="button" class="secondary">
+          Cancel
+        </button>
+      </div>
+    </dialog>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

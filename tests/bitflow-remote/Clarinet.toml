@@ -1,0 +1,50 @@
+# A second simnet project, used only by tests/bitflow-probe.test.ts and tests/bitflow-adapter.test.ts.
+# It reads mainnet contract state through Hiro's public API (read only: no key, nothing is signed or
+# broadcast). The shared Clarinet.toml stays offline, so the other tests never need the network.
+# bitflow-adapter is registered here only: it names mainnet principals, so the offline simnet
+# cannot deploy it. mock-oracle is the oracle the Bitflow vault copy reads (its ORACLE constant).
+[project]
+name = "keelio-bitflow-probe"
+description = "Simnet with remote_data, for the Bitflow probe"
+authors = []
+telemetry = false
+cache_dir = "./.cache"
+
+[contracts.bitflow-probe]
+path = "../../contracts/probes/bitflow-probe.clar"
+clarity_version = 3
+epoch = 3.3
+
+[contracts.sip-010-trait]
+path = "../../contracts/traits/sip-010-trait.clar"
+clarity_version = 3
+epoch = 3.3
+
+[contracts.swap-adapter-trait]
+path = "../../contracts/traits/swap-adapter-trait.clar"
+clarity_version = 3
+epoch = 3.3
+
+[contracts.oracle-trait]
+path = "../../contracts/traits/oracle-trait.clar"
+clarity_version = 3
+epoch = 3.3
+
+# These two are at epoch 4.0 so the simnet reaches it: the tests deploy a copy of keelio-vault at run
+# time, at the vault's own Clarity version, and Clarity 6 cannot be deployed in epoch 3.3.
+[contracts.mock-oracle]
+path = "../../contracts/mocks/mock-oracle.clar"
+clarity_version = 4
+epoch = 4.0
+
+[contracts.bitflow-adapter]
+path = "../../contracts/adapters/bitflow-adapter.clar"
+clarity_version = 4
+epoch = 4.0
+
+[repl.remote_data]
+enabled = true
+api_url = "https://api.hiro.so"
+use_mainnet_wallets = true
+# Pinned so the gate reads the same pool state on every run. Raise it on purpose, never to the tip.
+initial_height = 9495952
