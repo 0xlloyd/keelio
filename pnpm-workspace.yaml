@@ -13,3 +13,6 @@ strictDepBuilds: true
 allowBuilds:
   "@reown/appkit": false
   secp256k1: false
+  # wrangler pulls these in. Publishing static files needs neither install script.
+  esbuild: false
+  workerd: false
